@@ -1,14 +1,15 @@
 ---
-interface Props { id: string; title: string; description?: string; date: Date; tags?: string[]; }
+interface Props { id: string; title: string; description?: string; date: Date; tags?: string[]; cover?: string; coverAlt?: string; }
 import { withBase } from '../utils/paths';
-const { id, title, description, date, tags = [] } = Astro.props;
+const { id, title, description, date, tags = [], cover, coverAlt = '' } = Astro.props;
 const formatted = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 ---
-<article class="post-row">
+<article class:list={['post-row', { 'has-cover': cover }]}>
   <time datetime={date.toISOString()}>{formatted}</time>
   <div>
     <h3><a href={withBase(`/writing/${id}/`)}>{title}</a></h3>
     {description && <p>{description}</p>}
     {tags.length > 0 && <ul class="plain-tags" aria-label="Tags">{tags.map((tag) => <li>#{tag}</li>)}</ul>}
   </div>
+  {cover && <a class="row-cover post-cover" href={withBase(`/writing/${id}/`)} tabindex="-1" aria-hidden="true"><img src={withBase(cover)} alt={coverAlt} loading="lazy" /></a>}
 </article>

@@ -9,6 +9,8 @@ const posts = defineCollection({
     date: z.coerce.date(),
     description: z.string(),
     tags: z.array(z.string()).default([]),
+    cover: z.string().optional(),
+    coverAlt: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });
@@ -19,6 +21,8 @@ const projects = defineCollection({
     title: z.string(),
     description: z.string(),
     technologies: z.array(z.string()).default([]),
+    cover: z.string().optional(),
+    coverAlt: z.string().optional(),
     github: z.url().optional(),
     demo: z.url().optional(),
     featured: z.boolean().default(false),

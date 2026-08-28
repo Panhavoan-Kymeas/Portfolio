@@ -8,6 +8,6 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 const readingTime = Math.max(1, Math.ceil((post.body?.split(/\s+/).length ?? 800) / 220));
 ---
-<ArticleLayout title={post.data.title} description={post.data.description} date={post.data.date} tags={post.data.tags} readingTime={readingTime}>
+<ArticleLayout title={post.data.title} description={post.data.description} date={post.data.date} tags={post.data.tags} readingTime={readingTime} cover={post.data.cover} coverAlt={post.data.coverAlt}>
   <Content />
 </ArticleLayout>

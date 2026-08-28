@@ -11,7 +11,10 @@ const posts = (await getCollection('posts')).filter((p) => !p.data.draft).sort((
 ---
 <BaseLayout>
   <section class="shell hero">
-    <p class="eyebrow">Hello, I’m Panhavoan <span aria-hidden="true">👋</span></p>
+    <div class="hero-kicker">
+      <p class="eyebrow">Hello, I’m Panhavoan <span aria-hidden="true">👋</span></p>
+      <span>Phnom Penh · UTC+7</span>
+    </div>
     <h1>I build for the web<br />and write to <em>understand.</em></h1>
     <p class="hero-copy">I’m a software developer who enjoys turning fuzzy ideas into useful, thoughtful products. This is where I share my work and notes from things I’m learning.</p>
     <div class="hero-links">
@@ -22,17 +25,17 @@ const posts = (await getCollection('posts')).filter((p) => !p.data.draft).sort((
   </section>
 
   <section class="shell home-section ruled-section">
-    <div class="section-heading"><div><p class="eyebrow">Selected work</p><h2>Featured projects</h2></div><a href={withBase('/projects/')}>All projects <Icon name="arrow" /></a></div>
+    <div class="section-heading"><div><p class="eyebrow">Selected work</p><h2>Featured projects</h2></div><span class="section-number">01 / 03</span><a href={withBase('/projects/')}>All projects <Icon name="arrow" /></a></div>
     <div>{projects.map((project) => <ProjectRow id={project.id} {...project.data} />)}</div>
   </section>
 
   <section class="shell home-section ruled-section">
-    <div class="section-heading"><div><p class="eyebrow">From the notebook</p><h2>Recent writing</h2></div><a href={withBase('/writing/')}>All writing <Icon name="arrow" /></a></div>
+    <div class="section-heading"><div><p class="eyebrow">From the notebook</p><h2>Recent writing</h2></div><span class="section-number">02 / 03</span><a href={withBase('/writing/')}>All writing <Icon name="arrow" /></a></div>
     <div>{posts.map((post) => <PostRow id={post.id} {...post.data} />)}</div>
   </section>
 
   <section class="shell currently">
-    <p class="eyebrow">Currently</p>
+    <div><p class="eyebrow">Currently</p><span class="section-number">03 / Now</span></div>
     <p>Learning more about distributed systems, experimenting with local-first software, and trying to make a decent pour-over coffee.</p>
     <span class="updated">Updated August 2026</span>
   </section>

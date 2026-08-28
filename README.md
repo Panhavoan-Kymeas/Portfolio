@@ -26,6 +26,17 @@ Before publishing, search the repository for these placeholders:
 
 Add posts to `content/posts/` and projects to `content/projects/`. The schemas and available frontmatter fields are defined in `src/content.config.ts`. Set `draft: true` on a post to keep it out of production lists and routes.
 
+### Cover images
+
+Both posts and projects support optional cover artwork in list cards and detail pages. Save optimized images in `public/images/covers/` and add these fields to the Markdown frontmatter:
+
+```yaml
+cover: "/images/covers/my-cover.webp"
+coverAlt: "A useful description of the image"
+```
+
+For an image that should only appear inside an article, place it beside the Markdown file and reference it with standard Markdown: `![Description](./image.png)`.
+
 ## Publish with GitHub Pages
 
 1. Push the repository to GitHub with `main` as the default branch.

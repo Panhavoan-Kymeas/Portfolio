@@ -1,10 +1,11 @@
 ---
 import Icon from './Icon.astro';
 import { withBase } from '../utils/paths';
-interface Props { id: string; title: string; description: string; technologies: string[]; }
-const { id, title, description, technologies } = Astro.props;
+interface Props { id: string; title: string; description: string; technologies: string[]; cover?: string; coverAlt?: string; }
+const { id, title, description, technologies, cover, coverAlt = '' } = Astro.props;
 ---
-<article class="project-row">
+<article class:list={['project-row', { 'has-cover': cover }]}>
+  {cover && <a class="row-cover project-cover" href={withBase(`/projects/${id}/`)} tabindex="-1" aria-hidden="true"><img src={withBase(cover)} alt={coverAlt} loading="lazy" /></a>}
   <div>
     <h3><a href={withBase(`/projects/${id}/`)}>{title}</a></h3>
     <p>{description}</p>
