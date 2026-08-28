@@ -1,0 +1,14 @@
+---
+interface Props { id: string; title: string; description?: string; date: Date; tags?: string[]; }
+import { withBase } from '../utils/paths';
+const { id, title, description, date, tags = [] } = Astro.props;
+const formatted = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+---
+<article class="post-row">
+  <time datetime={date.toISOString()}>{formatted}</time>
+  <div>
+    <h3><a href={withBase(`/writing/${id}/`)}>{title}</a></h3>
+    {description && <p>{description}</p>}
+    {tags.length > 0 && <ul class="plain-tags" aria-label="Tags">{tags.map((tag) => <li>#{tag}</li>)}</ul>}
+  </div>
+</article>

@@ -1,0 +1,16 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostRow from '../../components/PostRow.astro';
+const posts = (await getCollection('posts')).filter((p) => !p.data.draft).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<BaseLayout title="Writing" description="Notes on software, tools, and the process of learning in public.">
+  <section class="shell page-intro">
+    <p class="eyebrow">The notebook</p>
+    <h1>Writing</h1>
+    <p>Notes on software, tools, and the process of learning in public. Rough edges included.</p>
+  </section>
+  <section class="shell ruled-section post-list">
+    {posts.map((post) => <PostRow id={post.id} {...post.data} />)}
+  </section>
+</BaseLayout>

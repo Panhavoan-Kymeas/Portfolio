@@ -1,0 +1,47 @@
+---
+import Icon from './Icon.astro';
+import { withBase } from '../utils/paths';
+const pathname = Astro.url.pathname;
+const links = [
+  { href: withBase('/projects/'), label: 'Projects' },
+  { href: withBase('/writing/'), label: 'Writing' },
+  { href: withBase('/about/'), label: 'About' },
+];
+---
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="wordmark" href={withBase('/')} aria-label="Kymeas Panhavoan, home">AM<span class="dot">.</span></a>
+    <nav id="main-nav" aria-label="Main navigation">
+      {links.map(({ href, label }) => (
+        <a href={href} aria-current={pathname.startsWith(href) ? 'page' : undefined}>{label}</a>
+      ))}
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button theme-toggle" type="button" aria-label="Switch color theme">
+        <span class="sun"><Icon name="sun" /></span><span class="moon"><Icon name="moon" /></span>
+      </button>
+      <button class="icon-button menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+        <span class="menu-icon"><Icon name="menu" /></span><span class="close-icon"><Icon name="close" /></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  const root = document.documentElement;
+  const savedTheme = localStorage.getItem('theme');
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  root.dataset.theme = savedTheme || (systemDark ? 'dark' : 'light');
+
+  document.querySelector('.theme-toggle')?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    localStorage.setItem('theme', next);
+  });
+  const menuButton = document.querySelector('.menu-toggle');
+  menuButton?.addEventListener('click', () => {
+    const open = root.classList.toggle('menu-open');
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+</script>

@@ -1,0 +1,17 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import Icon from '../../components/Icon.astro';
+export async function getStaticPaths() {
+  return (await getCollection('projects')).map((project) => ({ params: { id: project.id }, props: { project } }));
+}
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+<ArticleLayout title={project.data.title} description={project.data.description} tags={project.data.technologies} eyebrow="Project notes">
+  <div class="project-actions">
+    {project.data.github && <a class="button primary" href={project.data.github}><Icon name="github" /> View source</a>}
+    {project.data.demo && <a class="button secondary" href={project.data.demo}>Live demo <Icon name="external" /></a>}
+  </div>
+  <Content />
+</ArticleLayout>

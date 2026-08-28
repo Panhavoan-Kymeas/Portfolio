@@ -1,0 +1,14 @@
+---
+import Icon from './Icon.astro';
+import { withBase } from '../utils/paths';
+interface Props { id: string; title: string; description: string; technologies: string[]; }
+const { id, title, description, technologies } = Astro.props;
+---
+<article class="project-row">
+  <div>
+    <h3><a href={withBase(`/projects/${id}/`)}>{title}</a></h3>
+    <p>{description}</p>
+    <ul class="tag-list" aria-label="Technologies">{technologies.map((tech) => <li>{tech}</li>)}</ul>
+  </div>
+  <a class="circle-link" href={withBase(`/projects/${id}/`)} aria-label={`Read about ${title}`}><Icon name="arrow" /></a>
+</article>

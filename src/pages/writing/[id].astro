@@ -1,0 +1,13 @@
+---
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+export async function getStaticPaths() {
+  return (await getCollection('posts')).filter((p) => !p.data.draft).map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+const readingTime = Math.max(1, Math.ceil((post.body?.split(/\s+/).length ?? 800) / 220));
+---
+<ArticleLayout title={post.data.title} description={post.data.description} date={post.data.date} tags={post.data.tags} readingTime={readingTime}>
+  <Content />
+</ArticleLayout>

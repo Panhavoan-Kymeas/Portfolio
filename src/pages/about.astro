@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+---
+<BaseLayout title="About" description="A little about Kymeas Panhavoan, a software developer and lifelong learner.">
+  <section class="shell page-intro about-intro">
+    <p class="eyebrow">A little context</p>
+    <h1>About me</h1>
+    <p>I’m Alex, a software developer who likes making useful things and understanding how they work.</p>
+  </section>
+  <div class="shell about-grid ruled-section">
+    <div class="prose about-copy">
+      <h2>Curious by default</h2>
+      <p>I care about the whole shape of a product: the problem it solves, the words it uses, the system behind it, and how it feels in someone’s hands.</p>
+      <p>Most days I work across TypeScript, web platforms, APIs, and product design. Away from the screen, you’ll usually find me reading, taking photos, or making coffee with unreasonable precision.</p>
+      <h2>What I’m exploring</h2>
+      <p>Right now I’m especially interested in local-first software, durable systems, developer experience, accessibility, and the small details that make tools feel trustworthy.</p>
+    </div>
+    <aside class="about-aside">
+      <div><p class="eyebrow">Tools &amp; interests</p><ul class="tag-list"><li>TypeScript</li><li>Astro</li><li>React</li><li>Node.js</li><li>PostgreSQL</li><li>Design systems</li><li>Accessibility</li><li>Open source</li></ul></div>
+      <div><p class="eyebrow">Elsewhere</p><ul class="elsewhere"><li><a href="https://github.com/Panhavoan-Kymeas"><Icon name="github" /> GitHub <span>↗</span></a></li><li><a href="https://www.linkedin.com/in/panhavoan-kymeas-28b241314">LinkedIn <span>↗</span></a></li><li><a href="mailto:kymeaspanhavoan@gmail.com">Email <span>↗</span></a></li></ul></div>
+    </aside>
+  </div>
+</BaseLayout>
