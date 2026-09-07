@@ -123,6 +123,8 @@ nav a[aria-current='page'] { text-decoration: underline; text-decoration-color: 
 .back-link { display: block; margin-bottom: 60px; color: var(--muted); font: 400 11px/1.5 var(--mono); text-align: left; text-transform: uppercase; }
 .back-link:hover { color: var(--accent); }
 .article-header h1 { margin: 0 0 24px; font-size: clamp(48px, 7vw, 76px); }
+.draft-flag { display: inline-block; margin: 0 0 18px; padding: 6px 12px; border: 1px dashed var(--accent); border-radius: 2px; color: var(--accent); font: 500 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+.draft-tag { margin-left: 10px; padding: 3px 7px; border: 1px dashed var(--accent); border-radius: 2px; color: var(--accent); font: 500 9px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; vertical-align: middle; }
 .article-description { max-width: 650px; margin: auto; color: var(--muted); font-size: 18px; }
 .article-meta { display: flex; justify-content: center; gap: 10px; margin-top: 26px; color: var(--muted); font: 400 11px/1.5 var(--mono); text-transform: uppercase; }
 .tag-list.centered { justify-content: center; margin-top: 20px; }

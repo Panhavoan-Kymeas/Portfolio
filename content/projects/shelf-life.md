@@ -2,7 +2,7 @@
 title: "Shelf Life"
 description: "A small reading tracker built around memorable ideas instead of completion streaks."
 technologies: [Astro, TypeScript, CSS]
-cover: "/images/covers/shelf-life.webp"
+cover: "./shelf-life.webp"
 coverAlt: "Three tactile books connected by a fine orange thread"
 featured: false
 order: 4

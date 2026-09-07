@@ -2,7 +2,7 @@
 title: "Queue Watch"
 description: "A compact dashboard that makes background jobs, failures, and retries easy to understand."
 technologies: [Astro, Node.js, PostgreSQL]
-cover: "/images/covers/queue-watch.webp"
+cover: "./queue-watch.webp"
 coverAlt: "Dark tokens moving along parallel tracks around an orange token"
 featured: true
 order: 2

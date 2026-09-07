@@ -2,7 +2,7 @@
 title: "Field Notes"
 description: "A local-first notes app for capturing ideas quickly and organizing them without breaking flow."
 technologies: [TypeScript, React, IndexedDB]
-cover: "/images/covers/field-notes.webp"
+cover: "./field-notes.webp"
 coverAlt: "Layered paper notes connected to a glowing central node"
 featured: true
 order: 1

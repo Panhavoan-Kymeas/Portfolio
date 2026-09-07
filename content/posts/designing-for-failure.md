@@ -3,7 +3,7 @@ title: "Designing the Unhappy Path"
 date: "2026-07-21"
 description: "A few patterns for making product failures clear, recoverable, and less frustrating."
 tags: [design, engineering]
-cover: "/images/covers/designing-for-failure.webp"
+cover: "./designing-for-failure.webp"
 coverAlt: "An orange bridge crossing a gap in a sequence of ivory stepping stones"
 ---
 

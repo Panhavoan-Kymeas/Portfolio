@@ -3,7 +3,7 @@ title: "Notes on Local-First Software"
 date: "2026-08-12"
 description: "Why software feels different when the user owns the data and the network becomes optional."
 tags: [architecture, local-first]
-cover: "/images/covers/local-first-notes.webp"
+cover: "./local-first-notes.webp"
 coverAlt: "A small local house connected by an orange line to a distant cluster"
 ---
 

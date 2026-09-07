@@ -3,7 +3,7 @@ title: "What I Learned About Docker"
 date: "2026-08-28"
 description: "A practical mental model for images, containers, and the small details that finally made Docker click."
 tags: [docker, learning, devops]
-cover: "/images/covers/learning-docker.webp"
+cover: "./learning-docker.webp"
 coverAlt: "Nested charcoal and ivory boxes beside a small orange cube"
 ---
 

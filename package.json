@@ -7,7 +7,9 @@
     "dev": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "new": "node scripts/new.mjs",
+    "og": "node scripts/og-card.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.8",

@@ -2,7 +2,7 @@
 title: "Tiny Metrics"
 description: "A privacy-minded analytics script and a tiny dashboard for the numbers that actually matter."
 technologies: [Go, SQLite, JavaScript]
-cover: "/images/covers/tiny-metrics.webp"
+cover: "./tiny-metrics.webp"
 coverAlt: "Abstract metric bars viewed through a circular opening"
 featured: true
 order: 3
