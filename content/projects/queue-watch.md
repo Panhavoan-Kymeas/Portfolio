@@ -4,7 +4,6 @@ description: "A compact dashboard that makes background jobs, failures, and retr
 technologies: [Astro, Node.js, PostgreSQL]
 cover: "/images/covers/queue-watch.webp"
 coverAlt: "Dark tokens moving along parallel tracks around an orange token"
-github: "https://github.com/yourusername/queue-watch"
 featured: true
 order: 2
 ---

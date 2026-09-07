@@ -4,8 +4,6 @@ description: "A local-first notes app for capturing ideas quickly and organizing
 technologies: [TypeScript, React, IndexedDB]
 cover: "/images/covers/field-notes.webp"
 coverAlt: "Layered paper notes connected to a glowing central node"
-github: "https://github.com/yourusername/field-notes"
-demo: "https://example.com"
 featured: true
 order: 1
 ---

@@ -39,9 +39,17 @@ const links = [
     localStorage.setItem('theme', next);
   });
   const menuButton = document.querySelector('.menu-toggle');
-  menuButton?.addEventListener('click', () => {
-    const open = root.classList.toggle('menu-open');
-    menuButton.setAttribute('aria-expanded', String(open));
-    menuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  const setMenu = (open) => {
+    root.classList.toggle('menu-open', open);
+    menuButton?.setAttribute('aria-expanded', String(open));
+    menuButton?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  };
+  menuButton?.addEventListener('click', () => setMenu(!root.classList.contains('menu-open')));
+  document.querySelectorAll('#main-nav a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && root.classList.contains('menu-open')) {
+      setMenu(false);
+      menuButton?.focus();
+    }
   });
 </script>

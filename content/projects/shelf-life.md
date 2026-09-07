@@ -4,7 +4,6 @@ description: "A small reading tracker built around memorable ideas instead of co
 technologies: [Astro, TypeScript, CSS]
 cover: "/images/covers/shelf-life.webp"
 coverAlt: "Three tactile books connected by a fine orange thread"
-github: "https://github.com/yourusername/shelf-life"
 featured: false
 order: 4
 ---

@@ -4,7 +4,8 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   // Replace this with your custom domain before deploying.
-  site: 'https://Panhavoan-Kymeas.github.io',
+  // GitHub Pages serves from the lowercase host, so keep this lowercase.
+  site: 'https://panhavoan-kymeas.github.io',
   base: '/Portfolio',
   integrations: [mdx(), sitemap()],
   markdown: {
