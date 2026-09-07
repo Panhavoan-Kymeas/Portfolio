@@ -27,29 +27,40 @@ const links = [
   </div>
 </header>
 
-<script is:inline>
+<script>
+  // Theme is bootstrapped before paint in BaseLayout's <head>; this only wires
+  // up the controls. Bound on every astro:page-load so it survives view-transition
+  // navigations, which swap in a fresh header each time.
   const root = document.documentElement;
-  const savedTheme = localStorage.getItem('theme');
-  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  root.dataset.theme = savedTheme || (systemDark ? 'dark' : 'light');
 
-  document.querySelector('.theme-toggle')?.addEventListener('click', () => {
-    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-    root.dataset.theme = next;
-    localStorage.setItem('theme', next);
-  });
-  const menuButton = document.querySelector('.menu-toggle');
-  const setMenu = (open) => {
-    root.classList.toggle('menu-open', open);
-    menuButton?.setAttribute('aria-expanded', String(open));
-    menuButton?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-  };
-  menuButton?.addEventListener('click', () => setMenu(!root.classList.contains('menu-open')));
-  document.querySelectorAll('#main-nav a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+  function bindHeader() {
+    const menuButton = document.querySelector<HTMLElement>('.menu-toggle');
+    const setMenu = (open: boolean) => {
+      root.classList.toggle('menu-open', open);
+      menuButton?.setAttribute('aria-expanded', String(open));
+      menuButton?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+
+    document.querySelector('.theme-toggle')?.addEventListener('click', () => {
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+
+    menuButton?.addEventListener('click', () => setMenu(!root.classList.contains('menu-open')));
+    document.querySelectorAll('#main-nav a').forEach((link) =>
+      link.addEventListener('click', () => setMenu(false)));
+  }
+
+  // Document-level listeners: attached once for the page lifetime.
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && root.classList.contains('menu-open')) {
-      setMenu(false);
-      menuButton?.focus();
-    }
+    if (event.key !== 'Escape' || !root.classList.contains('menu-open')) return;
+    root.classList.remove('menu-open');
+    const btn = document.querySelector<HTMLElement>('.menu-toggle');
+    btn?.setAttribute('aria-expanded', 'false');
+    btn?.setAttribute('aria-label', 'Open menu');
+    btn?.focus();
   });
+  document.addEventListener('astro:before-swap', () => root.classList.remove('menu-open'));
+  document.addEventListener('astro:page-load', bindHeader);
 </script>
