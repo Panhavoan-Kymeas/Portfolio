@@ -9,7 +9,7 @@ const formatted = date.toLocaleDateString('en-US', { month: 'short', day: 'numer
   <div>
     <h3><a href={withBase(`/writing/${id}/`)}>{title}</a></h3>
     {description && <p>{description}</p>}
-    {tags.length > 0 && <ul class="plain-tags" aria-label="Tags">{tags.map((tag) => <li>#{tag}</li>)}</ul>}
+    {tags.length > 0 && <ul class="plain-tags" aria-label="Tags">{tags.map((tag) => <li><a href={withBase(`/writing/tags/${tag}/`)}>#{tag}</a></li>)}</ul>}
   </div>
   {cover && <a class="row-cover post-cover" href={withBase(`/writing/${id}/`)} tabindex="-1" aria-hidden="true"><img src={withBase(cover)} alt={coverAlt} loading="lazy" /></a>}
 </article>

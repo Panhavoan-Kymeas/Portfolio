@@ -1,13 +1,31 @@
 ---
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { withBase } from '../../utils/paths';
+
 export async function getStaticPaths() {
-  return (await getCollection('posts')).filter((p) => !p.data.draft).map((post) => ({ params: { id: post.id }, props: { post } }));
+  const posts = (await getCollection('posts'))
+    .filter((p) => !p.data.draft)
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+  return posts.map((post, i) => {
+    const older = posts[i + 1];
+    const newer = posts[i - 1];
+    return {
+      params: { id: post.id },
+      props: {
+        post,
+        prev: older && { href: withBase(`/writing/${older.id}/`), title: older.data.title },
+        next: newer && { href: withBase(`/writing/${newer.id}/`), title: newer.data.title },
+      },
+    };
+  });
 }
-const { post } = Astro.props;
+
+const { post, prev, next } = Astro.props;
 const { Content } = await render(post);
 const readingTime = Math.max(1, Math.ceil((post.body?.split(/\s+/).length ?? 800) / 220));
 ---
-<ArticleLayout title={post.data.title} description={post.data.description} date={post.data.date} tags={post.data.tags} readingTime={readingTime} cover={post.data.cover} coverAlt={post.data.coverAlt}>
+<ArticleLayout title={post.data.title} description={post.data.description} date={post.data.date} tags={post.data.tags} readingTime={readingTime} cover={post.data.cover} coverAlt={post.data.coverAlt} prev={prev} next={next}>
   <Content />
 </ArticleLayout>

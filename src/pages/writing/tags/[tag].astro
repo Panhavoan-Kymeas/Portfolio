@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostRow from '../../../components/PostRow.astro';
+import Icon from '../../../components/Icon.astro';
+import { withBase } from '../../../utils/paths';
+
+export async function getStaticPaths() {
+  const posts = (await getCollection('posts')).filter((post) => !post.data.draft);
+  const tags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+  return tags.map((tag) => ({
+    params: { tag },
+    props: {
+      tag,
+      posts: posts
+        .filter((post) => post.data.tags.includes(tag))
+        .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+const count = posts.length;
+---
+<BaseLayout title={`#${tag}`} description={`Writing tagged “${tag}”.`}>
+  <section class="shell page-intro">
+    <p class="eyebrow">The notebook</p>
+    <h1>#{tag}</h1>
+    <p>{count} {count === 1 ? 'post' : 'posts'} tagged “{tag}”. <a class="text-link" href={withBase('/writing/')}>All writing <Icon name="arrow" /></a></p>
+  </section>
+  <section class="shell ruled-section post-list">
+    {posts.map((post) => <PostRow id={post.id} {...post.data} />)}
+  </section>
+</BaseLayout>

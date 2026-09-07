@@ -1,9 +1,14 @@
 ---
+import { withBase } from '../utils/paths';
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
   <div class="shell footer-inner">
     <p>© {year} Kymeas Panhavoan</p>
-    <p>Built with Astro · Words &amp; code, thoughtfully made.</p>
+    <p class="footer-meta">
+      <a href={withBase('/rss.xml')}>RSS</a>
+      <span aria-hidden="true">·</span>
+      Built with Astro
+    </p>
   </div>
 </footer>
