@@ -136,7 +136,12 @@ nav a[aria-current='page'] { text-decoration: underline; text-decoration-color: 
 .prose blockquote p { margin: 0; }
 .prose img { max-width: 100%; border-radius: 3px; }
 .prose :not(pre) > code { padding: 2px 5px; background: var(--paper-deep); border: 1px solid var(--line); font: 13px var(--mono); }
-.prose pre { margin: 2em 0; padding: 22px; border-radius: 4px; font: 13px/1.75 var(--mono); overflow-x: auto; }
+.prose pre { position: relative; margin: 2em 0; padding: 22px; border: 1px solid var(--line); border-radius: 4px; font: 13px/1.75 var(--mono); overflow-x: auto; }
+.copy-code { position: absolute; top: 10px; right: 10px; padding: 5px 10px; border: 1px solid color-mix(in srgb, currentColor 22%, transparent); border-radius: 2px; background: color-mix(in srgb, var(--paper) 82%, transparent); color: var(--muted); font: 500 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; cursor: pointer; opacity: 0; transition: opacity .18s ease, color .18s ease, border-color .18s ease; }
+.prose pre:hover .copy-code, .copy-code:focus-visible { opacity: 1; }
+.copy-code:hover { color: var(--ink); border-color: var(--muted); }
+.copy-code.is-copied { color: var(--accent); border-color: var(--accent); opacity: 1; }
+@media (hover: none) { .copy-code { opacity: 1; } }
 .project-actions { display: flex; gap: 12px; margin-bottom: 50px; padding-bottom: 38px; border-bottom: 1px solid var(--line); }
 .about-grid { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 100px; padding: 80px 0 110px; }
 .about-copy { margin: 0; }
@@ -150,6 +155,9 @@ nav a[aria-current='page'] { text-decoration: underline; text-decoration-color: 
 .not-found { min-height: calc(100vh - 157px); padding: 120px 0; }
 .not-found h1 { margin: 0 0 15px; font-size: 72px; }
 .not-found > p:not(.eyebrow) { color: var(--muted); margin-bottom: 30px; }
+
+.reading-progress { position: fixed; z-index: 30; inset: 0 0 auto 0; height: 3px; background: color-mix(in srgb, var(--line) 60%, transparent); }
+.reading-progress span { display: block; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; will-change: transform; }
 
 .reveal { opacity: 0; transform: translateY(14px); transition: opacity .5s ease var(--reveal-delay, 0ms), transform .5s cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms); }
 .reveal.is-visible { opacity: 1; transform: none; }

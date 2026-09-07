@@ -21,7 +21,8 @@ const fullTitle = title.includes('Kymeas Panhavoan') ? title : `${title} — Kym
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f5f3ee" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f4f1ea" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1c19" />
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
     <meta property="og:type" content="website" />
@@ -76,7 +77,35 @@ const fullTitle = title.includes('Kymeas Panhavoan') ? title : `${title} — Kym
         });
       }
 
-      document.addEventListener('astro:page-load', setupReveal);
+      function setupCopyButtons() {
+        document.querySelectorAll<HTMLElement>('.prose pre').forEach((pre) => {
+          if (pre.querySelector('.copy-code')) return;
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'copy-code';
+          button.textContent = 'Copy';
+          button.addEventListener('click', async () => {
+            const code = pre.querySelector('code')?.innerText ?? pre.innerText;
+            try {
+              await navigator.clipboard.writeText(code);
+              button.textContent = 'Copied';
+              button.classList.add('is-copied');
+              setTimeout(() => {
+                button.textContent = 'Copy';
+                button.classList.remove('is-copied');
+              }, 1600);
+            } catch (e) {
+              button.textContent = 'Press ⌘C';
+            }
+          });
+          pre.appendChild(button);
+        });
+      }
+
+      document.addEventListener('astro:page-load', () => {
+        setupReveal();
+        setupCopyButtons();
+      });
     </script>
   </body>
 </html>
