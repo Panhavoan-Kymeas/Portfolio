@@ -39,11 +39,19 @@ const fullTitle = title.includes('Kymeas Panhavoan') ? title : `${title} — Kym
     <title>{fullTitle}</title>
     <ClientRouter />
     <script is:inline>
-      try {
-        document.documentElement.dataset.theme = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      } catch (e) {
-        document.documentElement.dataset.theme = 'light';
-      }
+      (function () {
+        var applyTheme = function () {
+          try {
+            document.documentElement.dataset.theme = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          } catch (e) {
+            document.documentElement.dataset.theme = 'light';
+          }
+        };
+        applyTheme();
+        // View-transition navigations swap in a fresh <html> with no data-theme;
+        // re-apply before the new page paints so dark mode doesn't flash back to light.
+        document.addEventListener('astro:after-swap', applyTheme);
+      })();
     </script>
   </head>
   <body>
