@@ -3,8 +3,8 @@ title: "AngkorLance"
 description: "A two-sided freelance marketplace built with a small team — my first Spring Boot backend, coming from FastAPI, plus a project-management course put into practice."
 technologies: [Java, Spring Boot, PostgreSQL, React, Docker]
 github: "https://github.com/Panhavoan-Kymeas/AngkorLance"
-featured: false
-order: 5
+featured: true
+order: 1
 ---
 
 ## Why I built it
