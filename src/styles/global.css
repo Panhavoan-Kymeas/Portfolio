@@ -172,9 +172,14 @@ nav a[aria-current='page'] { text-decoration: underline; text-decoration-color: 
 .cv-org { color: var(--muted); font-family: var(--sans); font-size: 14px; }
 .cv-dates { color: var(--muted); font: 400 11px/1.5 var(--mono); letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
 .cv-list p { margin: 8px 0 0; max-width: 640px; color: var(--muted); font-size: 14px; }
-.skill-groups { display: grid; gap: 20px; margin-top: 26px; }
+.skill-grid { display: grid; gap: 22px; margin-top: 26px; }
 .skill-group { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 18px; align-items: start; }
-.skill-label { margin: 3px 0 0; color: var(--muted); font: 500 11px/1.5 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+.skill-label { margin: 8px 0 0; color: var(--muted); font: 500 11px/1.5 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+.skill-items { display: flex; flex-wrap: wrap; gap: 9px; margin: 0; padding: 0; list-style: none; }
+.skill-items li { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); font-size: 13px; transition: border-color .18s, color .18s; }
+.skill-items li:hover { border-color: var(--accent); }
+.skill-items svg { flex: none; width: 16px; height: 16px; color: var(--muted); transition: color .18s; }
+.skill-items li:hover svg { color: var(--accent); }
 .about-aside { display: flex; flex-direction: column; gap: 55px; }
 .about-aside .tag-list { gap: 9px; }
 .elsewhere { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }

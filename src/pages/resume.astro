@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import CvList from '../components/CvList.astro';
+import SkillGrid from '../components/SkillGrid.astro';
+import { experience, education, skills } from '../data/resume';
+import { withBase } from '../utils/paths';
+---
+<BaseLayout title="Résumé" description="Kymeas Panhavoan — experience, education, and the tools I work in.">
+  <section class="shell page-intro">
+    <p class="eyebrow">The short version</p>
+    <h1>Résumé</h1>
+    <p>Experience, education, and the tools I reach for. <a class="text-link" href={withBase('/about/')}>More about me <Icon name="arrow" /></a></p>
+    <a class="button secondary resume-link" href={withBase('/resume.pdf')}>Download PDF <Icon name="external" /></a>
+  </section>
+
+  <section class="shell about-section ruled-section">
+    <p class="eyebrow">Experience</p>
+    <CvList items={experience} />
+  </section>
+
+  <section class="shell about-section ruled-section">
+    <p class="eyebrow">Education</p>
+    <CvList items={education} />
+  </section>
+
+  <section class="shell about-section ruled-section">
+    <p class="eyebrow">Skills</p>
+    <SkillGrid groups={skills} />
+  </section>
+</BaseLayout>

@@ -1,0 +1,20 @@
+---
+import type { SkillGroup } from '../data/resume';
+interface Props { groups: SkillGroup[]; }
+const { groups } = Astro.props;
+---
+<div class="skill-grid">
+  {groups.map((group) => (
+    <div class="skill-group">
+      <p class="skill-label">{group.label}</p>
+      <ul class="skill-items">
+        {group.items.map((item) => (
+          <li>
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d={item.path} fill="currentColor" /></svg>
+            <span>{item.name}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+</div>

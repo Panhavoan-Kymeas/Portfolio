@@ -1,3 +1,10 @@
+import {
+  siPython, siOpenjdk, siTypescript, siGnubash,
+  siFastapi, siSpringboot, siNodedotjs,
+  siPostgresql, siMysql, siSqlite, siPandas,
+  siDocker, siLinux, siGit, siGithubactions,
+} from 'simple-icons';
+
 export interface ResumeEntry {
   role: string;
   org: string;
@@ -5,22 +12,34 @@ export interface ResumeEntry {
   detail: string;
 }
 
-export interface SkillGroup {
-  label: string;
-  items: string[];
+export interface Skill {
+  name: string;
+  /** SVG path data (24x24 viewBox), rendered monochrome. */
+  path: string;
 }
 
+export interface SkillGroup {
+  label: string;
+  items: Skill[];
+}
+
+const skill = (icon: { title: string; path: string }, name?: string): Skill => ({
+  name: name ?? icon.title,
+  path: icon.path,
+});
+
 // What you're comfortable working in. Edit freely — keep each group short
-// (roughly 3–6) so it stays scannable.
+// (roughly 3–6). Icons come from the `simple-icons` package; swap `siFoo`
+// for another export to change one.
 export const skills: SkillGroup[] = [
-  { label: 'Languages', items: ['Python', 'Java', 'TypeScript', 'SQL', 'Bash'] },
-  { label: 'Backend', items: ['FastAPI', 'Spring Boot', 'Node.js', 'REST APIs'] },
-  { label: 'Data & storage', items: ['PostgreSQL', 'MySQL', 'SQLite', 'pandas'] },
-  { label: 'Infra & tooling', items: ['Docker', 'Linux', 'Git', 'GitHub Actions'] },
+  { label: 'Languages', items: [skill(siPython), skill(siOpenjdk, 'Java'), skill(siTypescript), skill(siGnubash, 'Bash')] },
+  { label: 'Backend', items: [skill(siFastapi), skill(siSpringboot, 'Spring Boot'), skill(siNodedotjs, 'Node.js')] },
+  { label: 'Databases', items: [skill(siPostgresql), skill(siMysql), skill(siSqlite), skill(siPandas, 'pandas')] },
+  { label: 'Infra & tooling', items: [skill(siDocker), skill(siLinux), skill(siGit), skill(siGithubactions, 'GitHub Actions')] },
 ];
 
 // Fill these in with your real details. Newest first.
-// Shown on the About page and (experience only) on the homepage.
+// Experience is also shown (compact) on the homepage.
 
 export const experience: ResumeEntry[] = [
   {
