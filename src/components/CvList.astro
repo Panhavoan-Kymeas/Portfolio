@@ -1,0 +1,16 @@
+---
+import type { ResumeEntry } from '../data/resume';
+interface Props { items: ResumeEntry[]; }
+const { items } = Astro.props;
+---
+<ul class="cv-list">
+  {items.map((item) => (
+    <li>
+      <div class="cv-head">
+        <span class="cv-role">{item.role} <span class="cv-org">· {item.org}</span></span>
+        <span class="cv-dates">{item.dates}</span>
+      </div>
+      <p>{item.detail}</p>
+    </li>
+  ))}
+</ul>

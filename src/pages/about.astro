@@ -1,38 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
+import CvList from '../components/CvList.astro';
+import { experience, education } from '../data/resume';
 import { withBase } from '../utils/paths';
-
-// Fill these in with your real details. Newest first.
-const experience = [
-  {
-    role: 'Role title',
-    org: 'Company or organisation',
-    dates: '2025 — Present',
-    detail: 'One or two lines: what you owned, what you built, the impact or what you learned.',
-  },
-  {
-    role: 'Role title',
-    org: 'Company or organisation',
-    dates: '2024 — 2025',
-    detail: 'One or two lines. Drop this entry if you only have one for now.',
-  },
-];
-
-const education = [
-  {
-    role: 'Your degree',
-    org: 'University',
-    dates: '2022 — 2026',
-    detail: 'Relevant coursework, focus, or anything worth calling out.',
-  },
-  {
-    role: 'Data Engineering Zoomcamp',
-    org: 'DataTalks.Club',
-    dates: '2026',
-    detail: 'Docker, workflow orchestration, data warehousing, and batch/stream processing. In progress.',
-  },
-];
 ---
 <BaseLayout title="About" description="A little about Kymeas Panhavoan, a software developer and lifelong learner.">
   <section class="shell page-intro about-intro">
@@ -40,6 +11,16 @@ const education = [
     <h1>About me</h1>
     <p>I’m Panhavoan, a software developer who likes making useful things and understanding how they work.</p>
     <a class="button secondary resume-link" href={withBase('/resume.pdf')}>Download résumé (PDF) <Icon name="external" /></a>
+  </section>
+
+  <section class="shell about-section ruled-section">
+    <p class="eyebrow">Experience</p>
+    <CvList items={experience} />
+  </section>
+
+  <section class="shell about-section ruled-section">
+    <p class="eyebrow">Education</p>
+    <CvList items={education} />
   </section>
 
   <div class="shell about-grid ruled-section">
@@ -55,34 +36,4 @@ const education = [
       <div><p class="eyebrow">Elsewhere</p><ul class="elsewhere"><li><a href="https://github.com/Panhavoan-Kymeas"><Icon name="github" /> GitHub <span>↗</span></a></li><li><a href="https://www.linkedin.com/in/panhavoan-kymeas-28b241314"><Icon name="linkedin" /> LinkedIn <span>↗</span></a></li><li><a href="mailto:kymeaspanhavoan@gmail.com"><Icon name="mail" /> Email <span>↗</span></a></li></ul></div>
     </aside>
   </div>
-
-  <section class="shell about-section ruled-section">
-    <p class="eyebrow">Experience</p>
-    <ul class="cv-list">
-      {experience.map((item) => (
-        <li>
-          <div class="cv-head">
-            <span class="cv-role">{item.role} <span class="cv-org">· {item.org}</span></span>
-            <span class="cv-dates">{item.dates}</span>
-          </div>
-          <p>{item.detail}</p>
-        </li>
-      ))}
-    </ul>
-  </section>
-
-  <section class="shell about-section ruled-section">
-    <p class="eyebrow">Education</p>
-    <ul class="cv-list">
-      {education.map((item) => (
-        <li>
-          <div class="cv-head">
-            <span class="cv-role">{item.role} <span class="cv-org">· {item.org}</span></span>
-            <span class="cv-dates">{item.dates}</span>
-          </div>
-          <p>{item.detail}</p>
-        </li>
-      ))}
-    </ul>
-  </section>
 </BaseLayout>

@@ -3,11 +3,14 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProjectRow from '../components/ProjectRow.astro';
 import PostRow from '../components/PostRow.astro';
+import CvList from '../components/CvList.astro';
 import Icon from '../components/Icon.astro';
+import { experience } from '../data/resume';
 import { withBase } from '../utils/paths';
 
 const projects = (await getCollection('projects')).filter((p) => p.data.featured).sort((a, b) => a.data.order - b.data.order).slice(0, 3);
 const posts = (await getCollection('posts')).filter((p) => !p.data.draft).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 3);
+const recentExperience = experience.slice(0, 3);
 ---
 <BaseLayout>
   <section class="shell hero">
@@ -25,17 +28,22 @@ const posts = (await getCollection('posts')).filter((p) => !p.data.draft).sort((
   </section>
 
   <section class="shell home-section ruled-section">
-    <div class="section-heading"><div><p class="eyebrow">Selected work</p><h2>Featured projects</h2></div><span class="section-number">01 / 03</span><a href={withBase('/projects/')}>All projects <Icon name="arrow" /></a></div>
+    <div class="section-heading"><div><p class="eyebrow">Selected work</p><h2>Featured projects</h2></div><span class="section-number">01 / 04</span><a href={withBase('/projects/')}>All projects <Icon name="arrow" /></a></div>
     <div>{projects.map((project) => <ProjectRow id={project.id} {...project.data} />)}</div>
   </section>
 
   <section class="shell home-section ruled-section">
-    <div class="section-heading"><div><p class="eyebrow">From the notebook</p><h2>Recent writing</h2></div><span class="section-number">02 / 03</span><a href={withBase('/writing/')}>All writing <Icon name="arrow" /></a></div>
+    <div class="section-heading"><div><p class="eyebrow">Where I’ve worked</p><h2>Experience</h2></div><span class="section-number">02 / 04</span><a href={withBase('/about/')}>Full background <Icon name="arrow" /></a></div>
+    <CvList items={recentExperience} />
+  </section>
+
+  <section class="shell home-section ruled-section">
+    <div class="section-heading"><div><p class="eyebrow">From the notebook</p><h2>Recent writing</h2></div><span class="section-number">03 / 04</span><a href={withBase('/writing/')}>All writing <Icon name="arrow" /></a></div>
     <div>{posts.map((post) => <PostRow id={post.id} {...post.data} />)}</div>
   </section>
 
   <section class="shell currently">
-    <div><p class="eyebrow">Currently</p><span class="section-number">03 / Now</span></div>
+    <div><p class="eyebrow">Currently</p><span class="section-number">04 / Now</span></div>
     <p>Learning more about distributed systems, experimenting with local-first software, and trying to make a decent pour-over coffee.</p>
     <span class="updated">Updated August 2026</span>
   </section>
