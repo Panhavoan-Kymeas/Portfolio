@@ -60,7 +60,7 @@ const fullTitle = title.includes('Kymeas Panhavoan') ? title : `${title} — Kym
     <main id="main"><slot /></main>
     <Footer />
     <script>
-      const REVEAL = '.home-section, .page-intro, .project-row, .post-row, .currently, .about-grid, .article-header, .project-list > *, .post-list > *';
+      const REVEAL = '.home-section, .page-intro, .project-row, .post-row, .currently, .about-grid, .about-section, .article-header, .project-list > *, .post-list > *';
 
       function setupReveal() {
         const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
