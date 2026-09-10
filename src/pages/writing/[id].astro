@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 import { withBase } from '../../utils/paths';
+import { readingTime } from '../../utils/reading-time';
 
 export async function getStaticPaths() {
   const posts = (await getCollection('posts'))
@@ -24,8 +25,7 @@ export async function getStaticPaths() {
 
 const { post, prev, next } = Astro.props;
 const { Content } = await render(post);
-const readingTime = Math.max(1, Math.ceil((post.body?.split(/\s+/).length ?? 800) / 220));
 ---
-<ArticleLayout title={post.data.title} description={post.data.description} date={post.data.date} tags={post.data.tags} readingTime={readingTime} cover={post.data.cover} coverAlt={post.data.coverAlt} prev={prev} next={next} draft={post.data.draft}>
+<ArticleLayout title={post.data.title} description={post.data.description} date={post.data.date} tags={post.data.tags} readingTime={readingTime(post.body)} cover={post.data.cover} coverAlt={post.data.coverAlt} prev={prev} next={next} draft={post.data.draft}>
   <Content />
 </ArticleLayout>

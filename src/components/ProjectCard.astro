@@ -1,0 +1,50 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import { techIcon } from '../data/tech';
+import { withBase } from '../utils/paths';
+
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  technologies: string[];
+  cover?: ImageMetadata;
+  coverAlt?: string;
+}
+const { id, title, description, technologies, cover, coverAlt = '' } = Astro.props;
+const href = withBase(`/projects/${id}/`);
+const initials = title
+  .split(/\s+/)
+  .slice(0, 2)
+  .map((word) => word[0])
+  .join('');
+---
+<article class="project-card">
+  <div class="project-card-cover" aria-hidden="true">
+    {cover ? (
+      <Image src={cover} alt={coverAlt} widths={[400, 640, 900]} sizes="(max-width: 800px) 100vw, 520px" loading="lazy" />
+    ) : (
+      <span class="project-card-mark">{initials}</span>
+    )}
+  </div>
+  <div class="project-card-body">
+    <h3><a href={href}>{title}</a></h3>
+    <p>{description}</p>
+    {technologies.length > 0 && (
+      <ul class="tech-row" aria-label="Built with">
+        {technologies.map((tech) => {
+          const path = techIcon(tech);
+          return (
+            <li>
+              {path && <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d={path} fill="currentColor" /></svg>}
+              <span>{tech}</span>
+            </li>
+          );
+        })}
+      </ul>
+    )}
+    <span class="project-card-cta">View project <Icon name="arrow" /></span>
+  </div>
+</article>

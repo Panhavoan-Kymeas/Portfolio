@@ -1,11 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProjectRow from '../components/ProjectRow.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 import PostRow from '../components/PostRow.astro';
 import CvList from '../components/CvList.astro';
 import Icon from '../components/Icon.astro';
 import { experience } from '../data/resume';
+import { readingTime } from '../utils/reading-time';
 import { withBase } from '../utils/paths';
 
 const projects = (await getCollection('projects')).filter((p) => p.data.featured).sort((a, b) => a.data.order - b.data.order).slice(0, 3);
@@ -29,7 +30,7 @@ const recentExperience = experience.slice(0, 3);
 
   <section class="shell home-section ruled-section">
     <div class="section-heading"><div><p class="eyebrow">Selected work</p><h2>Featured projects</h2></div><span class="section-number">01 / 04</span><a href={withBase('/projects/')}>All projects <Icon name="arrow" /></a></div>
-    <div>{projects.map((project) => <ProjectRow id={project.id} {...project.data} />)}</div>
+    <div class="project-grid">{projects.map((project) => <ProjectCard id={project.id} {...project.data} />)}</div>
   </section>
 
   <section class="shell home-section ruled-section">
@@ -39,7 +40,7 @@ const recentExperience = experience.slice(0, 3);
 
   <section class="shell home-section ruled-section">
     <div class="section-heading"><div><p class="eyebrow">From the notebook</p><h2>Recent writing</h2></div><span class="section-number">03 / 04</span><a href={withBase('/writing/')}>All writing <Icon name="arrow" /></a></div>
-    <div>{posts.map((post) => <PostRow id={post.id} {...post.data} />)}</div>
+    <div>{posts.map((post) => <PostRow id={post.id} readingTime={readingTime(post.body)} {...post.data} />)}</div>
   </section>
 
   <section class="shell currently">
