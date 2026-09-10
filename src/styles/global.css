@@ -17,14 +17,14 @@
 }
 
 :root[data-theme='dark'] {
-  --paper: #1b1c19;
-  --paper-deep: #22231f;
-  --ink: #eeece4;
-  --muted: #aaa99f;
-  --line: #393a35;
-  --accent: #ef784f;
-  --accent-deep: #ff9875;
-  --grain: rgba(255, 255, 255, .025);
+  --paper: #26221e;
+  --paper-deep: #2f2a25;
+  --ink: #ece7dc;
+  --muted: #a9a293;
+  --line: #453e35;
+  --accent: #ef7a4f;
+  --accent-deep: #ff9d78;
+  --grain: rgba(255, 255, 255, .02);
   color-scheme: dark;
 }
 
