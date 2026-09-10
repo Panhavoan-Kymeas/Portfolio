@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import CvList from '../components/CvList.astro';
 import SkillGrid from '../components/SkillGrid.astro';
-import { experience, education, skills } from '../data/resume';
+import { experience, education, skills, certifications, awards } from '../data/resume';
 import { withBase } from '../utils/paths';
 ---
 <BaseLayout title="Résumé" description="Kymeas Panhavoan — experience, education, and the tools I work in.">
@@ -27,5 +27,15 @@ import { withBase } from '../utils/paths';
   <section class="shell about-section ruled-section">
     <p class="eyebrow">Skills</p>
     <SkillGrid groups={skills} />
+  </section>
+
+  <section class="shell about-section ruled-section">
+    <p class="eyebrow">Certifications</p>
+    <CvList items={certifications} />
+  </section>
+
+  <section class="shell about-section ruled-section">
+    <p class="eyebrow">Honors &amp; awards</p>
+    <CvList items={awards} />
   </section>
 </BaseLayout>

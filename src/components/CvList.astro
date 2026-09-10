@@ -10,7 +10,7 @@ const { items } = Astro.props;
         <span class="cv-role">{item.role} <span class="cv-org">· {item.org}</span></span>
         <span class="cv-dates">{item.dates}</span>
       </div>
-      <p>{item.detail}</p>
+      {item.detail && <p>{item.detail}</p>}
     </li>
   ))}
 </ul>

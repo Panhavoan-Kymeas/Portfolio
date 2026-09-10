@@ -3,20 +3,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import { withBase } from '../utils/paths';
 ---
-<BaseLayout title="About" description="A little about Kymeas Panhavoan, a software developer and lifelong learner.">
+<BaseLayout title="About" description="A little about Kymeas Panhavoan, a back-end developer based in Phnom Penh.">
   <section class="shell page-intro about-intro">
     <p class="eyebrow">A little context</p>
     <h1>About me</h1>
-    <p>I’m Panhavoan, a software developer who likes making useful things and understanding how they work. <a class="text-link" href={withBase('/resume/')}>See my résumé <Icon name="arrow" /></a></p>
+    <p>I’m Panhavoan, a back-end developer based in Phnom Penh. I like building the parts of a system people don’t see, and understanding why they behave the way they do. <a class="text-link" href={withBase('/resume/')}>See my résumé <Icon name="arrow" /></a></p>
   </section>
 
   <div class="shell about-grid ruled-section">
     <div class="prose about-copy">
-      <h2>Curious by default</h2>
-      <p>I care about the whole shape of a product: the problem it solves, the words it uses, the system behind it, and how it feels in someone’s hands.</p>
-      <p>Most days I work across TypeScript, web platforms, APIs, and product design. Away from the screen, you’ll usually find me reading, taking photos, or making coffee with unreasonable precision.</p>
-      <h2>What I’m exploring</h2>
-      <p>Right now I’m especially interested in local-first software, durable systems, developer experience, accessibility, and the small details that make tools feel trustworthy.</p>
+      <h2>How I got here</h2>
+      <p>I started with Python and FastAPI, then picked up Java and Spring Boot by building things with them — most recently AngkorLance, a freelance marketplace I worked on with a small team. These days I write back-end services at Innotech Solutions and study at the Royal University of Phnom Penh.</p>
+      <h2>What I’m into</h2>
+      <p>Data engineering, mostly. I’m working through the DataTalks.Club Zoomcamp — Docker, Postgres, workflow orchestration — and I keep notes on it here. I care about systems that stay predictable under load and fail in ways you can actually debug.</p>
     </div>
     <aside class="about-aside">
       <div><p class="eyebrow">Elsewhere</p><ul class="elsewhere"><li><a href="https://github.com/Panhavoan-Kymeas"><Icon name="github" /> GitHub <span>↗</span></a></li><li><a href="https://www.linkedin.com/in/panhavoan-kymeas-28b241314"><Icon name="linkedin" /> LinkedIn <span>↗</span></a></li><li><a href="mailto:kymeaspanhavoan@gmail.com"><Icon name="mail" /> Email <span>↗</span></a></li></ul></div>
