@@ -11,7 +11,7 @@ const formatted = date.toLocaleDateString('en-US', { month: 'short', day: 'numer
   <div>
     <h3><a href={withBase(`/writing/${id}/`)}>{title}</a>{import.meta.env.DEV && draft && <span class="draft-tag">Draft</span>}</h3>
     {description && <p>{description}</p>}
-    {tags.length > 0 && <ul class="plain-tags" aria-label="Tags">{tags.map((tag) => <li><a href={withBase(`/writing/tags/${tag}/`)}>#{tag}</a></li>)}</ul>}
+    {tags.length > 0 && <ul class="tag-list" aria-label="Tags">{tags.map((tag) => <li><a href={withBase(`/writing/tags/${tag}/`)}>{tag}</a></li>)}</ul>}
   </div>
   {cover && (
     <a class="row-cover post-cover" href={withBase(`/writing/${id}/`)} tabindex="-1" aria-hidden="true">
