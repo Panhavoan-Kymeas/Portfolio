@@ -5,6 +5,20 @@ export interface ResumeEntry {
   detail: string;
 }
 
+export interface SkillGroup {
+  label: string;
+  items: string[];
+}
+
+// What you're comfortable working in. Edit freely — keep each group short
+// (roughly 3–6) so it stays scannable.
+export const skills: SkillGroup[] = [
+  { label: 'Languages', items: ['Python', 'Java', 'TypeScript', 'SQL', 'Bash'] },
+  { label: 'Backend', items: ['FastAPI', 'Spring Boot', 'Node.js', 'REST APIs'] },
+  { label: 'Data & storage', items: ['PostgreSQL', 'MySQL', 'SQLite', 'pandas'] },
+  { label: 'Infra & tooling', items: ['Docker', 'Linux', 'Git', 'GitHub Actions'] },
+];
+
 // Fill these in with your real details. Newest first.
 // Shown on the About page and (experience only) on the homepage.
 
